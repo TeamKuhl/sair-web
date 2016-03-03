@@ -1,0 +1,29 @@
+.loader {
+    position: fixed;
+    background: none;
+    color: #fff;
+    font-size: 48px;
+    top: 50%;
+    margin-top: -24px;
+    width: 100%;
+    padding: 5px 32px;
+}
+
+.loader .loading {
+    float: left;
+}
+
+.loader .loadinfo {
+    float: right;
+    margin-right: 32px;
+    font-size: 22px;
+    padding-top: 26px;
+}
+
+.loader .loadbar {
+    height: 1px;
+    width: 0%;
+    border-bottom: 1px solid #fff;
+    clear: both;
+    margin-top: 5px;
+}
