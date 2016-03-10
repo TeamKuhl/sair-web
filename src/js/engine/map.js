@@ -19,8 +19,11 @@ function Map()
         var model = Engine.Models.Get(model);
         
         // calculate size and factor
-        var size = Engine.Models.GetSize(model);
-        var factor = Config.Size / size.x;
+        var modelSize = Engine.Models.GetSize(model);
+		var length = modelSize.x;
+		if(modelSize.z > length);
+			length = modelSize.z;
+        var factor = Config.Size / length;
         
         // scale model
         model.scale.x *= factor;
