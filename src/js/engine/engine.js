@@ -1,6 +1,6 @@
 /**
  * THREE.js Engine
- * 
+ *
  * written by Matthias Neid
  **/
 
@@ -8,11 +8,12 @@ function Engine()
 {
     // DEFINITION
     this.sky = {};
-	this.objects = {};
-	
-	this.Models = {};
-	this.Map = {};
-    
+  	this.objects = {};
+    this.stats = false;
+
+  	this.Models = {};
+  	this.Map = {};
+
     /**
      * Initializes THREE.js and set up the scene
      */
@@ -30,60 +31,94 @@ function Engine()
         }
         else
         {
-            this.camera = new THREE.PerspectiveCamera( 
+            this.camera = new THREE.PerspectiveCamera(
                 Config.FieldOfView,
                 Config.AspectRatio,
                 Config.PaneNear,
                 Config.PaneFar
             );
-            
+
             this.camera.position.z = 10;
             this.camera.position.y = 3;
-        }    
-        
-        
-        
+        }
+
+
+
         // set up renderer
         this.renderer = new THREE.WebGLRenderer({antialias: Config.AntiAlias});
         this.renderer.setSize(Config.Width, Config.Height);
         document.body.appendChild(this.renderer.domElement);
-        
+
         // mouse movement
         this.controls = new THREE.OrbitControls(this.camera, this.renderer.domElement);
         if(Config.Isometric) this.controls.enableRotate = false;
-        
+
         // sky
         this.CreateSky();
-        
+
+        // window resize
+        THREEx.WindowResize(this.renderer, this.camera)
+
+        // initialize stats
+        if(Config.Stats)
+            this.InitStats();
+
         // start rendering
         this.Frame();
-		
-		// other classes
-		this.Models = new Models();
-		this.Map = new Map();
-		this.Objects = new Objects();
+
+    		// other classes
+    		this.Models = new Models();
+    		this.Map = new Map();
+    		this.Objects = new Objects();
     }
-    
+
     /**
      * Frame render function
      */
     this.Frame = function()
     {
+        // reference to me
         var self = this;
-        requestAnimationFrame(function() { self.Frame(); });
+
+        if(self.stats)
+            self.stats.begin();
+
         this.renderer.render(this.scene, this.camera);
+
+        if(self.stats)
+            self.stats.end();
+
+        requestAnimationFrame(function() { self.Frame(); });
     }
-    
+
     /**
      * Creates the sky and hemisphere light
-     */ 
+     */
     this.CreateSky = function()
     {
         // create sky light
         this.sky.light = new THREE.HemisphereLight( 0xffffbb, 0x080820, 1 );
         this.scene.add( this.sky.light );
-        
+
         // blue sky
         this.renderer.setClearColor(0x96CFEA,1);
-    }    
+    }
+
+    /**
+     * Initialize stats.js for debug information
+     */
+    this.InitStats = function() {
+
+        // create fps counter
+        this.stats = new Stats();
+        this.stats.setMode( 0 );
+
+        // align top-left
+        this.stats.domElement.style.position = 'absolute';
+        this.stats.domElement.style.right = '0px';
+        this.stats.domElement.style.top = '0px';
+
+        // show it
+        document.body.appendChild( this.stats.domElement );
+    }
 }

@@ -1,6 +1,6 @@
 /**
  * THREE.js Engine
- * Config 
+ * Config
  *
  * written by Matthias Neid
  **/
@@ -15,5 +15,6 @@ var Config = {
 	Size:           1,
 	Spacing:        0,
 	AntiAlias:      true,
-	Isometric:      true    
+	Isometric:      true,
+	Stats:					true    
 }

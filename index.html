@@ -3,26 +3,32 @@
     <head>
         <meta charset="utf8" />
         <title>Sair</title>
-        
+
         <script src="src/vendor/jquery/jquery-1.11.3.min.js"></script>
         <script src="src/vendor/threejs/three.min.js"></script>
-        <script src="src/vendor/threejs/ColladaLoader2.js"></script>     
+        <script src="src/vendor/threejs/ColladaLoader2.js"></script>
         <script src="src/vendor/threejs/OrbitControls.js"></script>
-		
+        <script src="src/vendor/statsjs/stats.min.js"></script>
+
+        <script src="src/vendor/threejs/plugins/threex.collider.js"></script>
+        <script src="src/vendor/threejs/plugins/threex.colliderhelper.js"></script>
+        <script src="src/vendor/threejs/plugins/threex.collidersystem.js"></script>
+        <script src="src/vendor/threejs/plugins/threex.windowresize.js"></script>
+
         <script src="src/js/engine/config.js"></script>
         <script src="src/js/engine/models.js"></script>
         <script src="src/js/engine/map.js"></script>
         <script src="src/js/engine/objects.js"></script>
         <script src="src/js/engine/engine.js"></script>
-		
+
         <script src="src/js/client/config.js"></script>
         <script src="src/js/client/client.js"></script>
-		
+
         <script src="src/js/game/game.js"></script>
-        
+
         <link rel="stylesheet" href="src/css/style.css" />
         <link rel="stylesheet" href="src/css/loader.css" />
-        
+
         <link rel="shortcut icon" href="favicon.ico" />
     </head>
     <body>
@@ -31,36 +37,8 @@
             <div class="loadinfo" id="loadinfo"></div>
             <div class="loadbar" id="loadbar"></div>
         </div>
-		
+
         <script src="src/js/init.js"></script>
-        <script>
-			/* afsdfasdf */
-			$('html').keypress(function(e){
-				switch(e.which) {
-					case 119: // w
-						Engine.Objects.ChangePosition("fire",{x:-0.2});
-						break;
-					case 115: // s
-						Engine.Objects.ChangePosition("fire",{x:0.2});
-						break;
-					case 97: // a
-						Engine.Objects.ChangePosition("fire",{z:0.2});
-						break;
-					case 100: // d
-						Engine.Objects.ChangePosition("fire",{z:-0.2});
-						break;
-					case 113: // q
-						Engine.Objects.ChangeRotation("fire",{y:0.05});
-						break;
-					case 101: // e
-						Engine.Objects.ChangeRotation("fire",{y:-0.05});
-						break;
-					default:
-						console.log(e.which);
-						break;
-				}
-			});
-        </script>
-		
+
     </body>
 </html>

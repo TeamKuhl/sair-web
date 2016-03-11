@@ -1,6 +1,6 @@
 /**
  * Sair
- * Config 
+ * Config
  *
  * written by Matthias Neid
  **/
