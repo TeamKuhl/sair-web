@@ -6,5 +6,5 @@
  **/
 
 var ClientConfig = {
-	URL:	"ws://sair.cf:80/wsService"
+	URL:	"ws://sair.cf:8080/wsService"
 }
