@@ -55,9 +55,9 @@ function Objects()
 	 */
 	this.GetPosition = function(name) {
 			return {
-				x: this.objects[name].model.position.x / (Config.Size * (1+Config.Spacing)),
-				y: this.objects[name].model.position.y * 2 / (Config.Size * (1+Config.Spacing)),
-				z: this.objects[name].model.position.z / (Config.Size * (1+Config.Spacing)),
+				x: RoundPosition(this.objects[name].model.position.x / (Config.Size * (1+Config.Spacing))),
+				y: RoundPosition(this.objects[name].model.position.y * 2 / (Config.Size * (1+Config.Spacing))),
+				z: RoundPosition(this.objects[name].model.position.z / (Config.Size * (1+Config.Spacing))),
 			};
 	}
 
@@ -66,9 +66,9 @@ function Objects()
 	 */
 	this.GetRotation = function(name) {
 			return {
-				x: this.objects[name].model.rotation.x / (Math.PI * 2),
-				y: this.objects[name].model.rotation.y / (Math.PI * 2),
-				z: this.objects[name].model.rotation.z / (Math.PI * 2),
+				x: RoundRotation(this.objects[name].model.rotation.x / (Math.PI * 2)),
+				y: RoundRotation(this.objects[name].model.rotation.y / (Math.PI * 2)),
+				z: RoundRotation(this.objects[name].model.rotation.z / (Math.PI * 2)),
 			};
 	}
 
