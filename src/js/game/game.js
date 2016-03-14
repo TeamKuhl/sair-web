@@ -106,8 +106,11 @@ function Game()
   this.Objectchange = function(message) {
     message.o.forEach(function(e){
       if(Engine.Objects.Exists(e.u)) {
-        Engine.Objects.SetPosition(e.u, e.p);
-        Engine.Objects.SetRotation(e.u, e.r);
+      	if(e.p != undefined)
+        	Engine.Objects.SetPosition(e.u, e.p);
+        	
+        if(e.r != undefined)
+        	Engine.Objects.SetRotation(e.u, e.r);
       }
       else {
         if(Engine.Models.Exists(e.m))
