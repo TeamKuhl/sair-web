@@ -17,10 +17,10 @@ function Game()
     this.Initialize = function()
     {
       // listen to events
-  		Client.Bind("mapchange", this.Mapchange);
-      Client.Bind("objectchange", this.Objectchange);
-      Client.Bind("objectdelete", this.Objectdelete);
-      Client.Bind("clientuuid", this.Clientuuid);
+  		Client.Bind(ONMAPCHANGE, this.Mapchange);
+      Client.Bind(ONOBJECTHANGE, this.Objectchange);
+      Client.Bind(ONOBJECTDELETE, this.Objectdelete);
+      Client.Bind(ONCLIENTUUID, this.Clientuuid);
   		Client.socket.onopen = this.Connected;
     }
 
@@ -28,16 +28,19 @@ function Game()
 	 * Mapchange
 	 */
 	this.Mapchange = function(message) {
-		message.map.forEach(function(e){
-			Engine.Map.Set(e.x,e.y,e.z,e.name,e.rotation);
+		message.o.forEach(function(e){
+			Engine.Map.Set(e.p,e.m,e.r);
 		});
 	}
 
   this.Clientuuid = function(message) {
-		Game.clientuuid = message.uuid;
+		Game.clientuuid = message.u;
 
     Game.current = { movement: {z:0},
                     rotation: {y:0}};
+
+    Game.lastPosition = {x:1, y:1, z:1};
+    Game.lastRotation = {x:0, y:0, z:0};
 
     $(document).keydown(function(e){
       switch(e.which) {
@@ -83,32 +86,72 @@ function Game()
       Engine.Objects.Move(Game.clientuuid, Game.current.movement);
 
       var clientobject = Engine.Objects.Get(Game.clientuuid);
-      Client.Send({
-        type: "setobject",
-        position: Engine.Objects.GetPosition(Game.clientuuid),
-        rotation: Engine.Objects.GetRotation(Game.clientuuid),
-        model: clientobject.model.name
-      });
+      var message = {
+        t: SETOBJECT,
+      };
+
+      var pos = Game.GetPositionChange(Engine.Objects.GetPosition(Game.clientuuid));
+      var rot = Game.GetRotationChange(Engine.Objects.GetRotation(Game.clientuuid));
+
+      if(pos)
+        message.p = pos;
+
+      if(rot)
+        message.r = rot;
+
+      Client.Send(message);
     }
   }
 
   this.Objectchange = function(message) {
-    message.objects.forEach(function(e){
-      if(Engine.Objects.Exists(e.uuid)) {
-        Engine.Objects.SetPosition(e.uuid, e.position);
-        Engine.Objects.SetRotation(e.uuid, e.rotation);
+    message.o.forEach(function(e){
+      if(Engine.Objects.Exists(e.u)) {
+        Engine.Objects.SetPosition(e.u, e.p);
+        Engine.Objects.SetRotation(e.u, e.r);
       }
       else {
-        if(Engine.Models.Exists(e.model))
-          Engine.Objects.Add(e.uuid, e.position, e.model, 1, e.rotation);
+        if(Engine.Models.Exists(e.m))
+          Engine.Objects.Add(e.u, e.p, e.m, 1, e.r);
       }
     });
   }
 
   this.Objectdelete = function(message) {
     message.objects.forEach(function(e){
-      Engine.Objects.Destroy(e.uuid);
+      Engine.Objects.Destroy(e.u);
     });
+  }
+
+  this.GetPositionChange = function(position) {
+    var change = {};
+    if(position.x != this.lastPosition.x)
+      change.x = position.x;
+    if(position.y != this.lastPosition.y)
+      change.y = position.y;
+    if(position.z != this.lastPosition.z)
+      change.z = position.z;
+
+    this.lastPosition = position;
+    if($.isEmptyObject(change))
+      return false;
+    else
+      return change;
+  }
+
+  this.GetRotationChange = function(rotation) {
+    var change = {};
+    if(rotation.x != this.lastRotation.x)
+      change.x = rotation.x;
+    if(rotation.y != this.lastRotation.y)
+      change.y = rotation.y;
+    if(rotation.z != this.lastRotation.z)
+      change.z = rotation.z;
+
+    this.lastRotation = rotation;
+    if($.isEmptyObject(change))
+      return false;
+    else
+      return change;
   }
 
 	/**

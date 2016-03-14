@@ -1,6 +1,6 @@
 /**
  * THREE.js Engine
- * Map 
+ * Map
  *
  * written by Matthias Neid
  **/
@@ -8,59 +8,59 @@
 function Map()
 {
     // DEFINITION
-    this.map = {};  
-    
+    this.map = {};
+
     /**
      * Set a model to a tile
      */
-    this.Set  = function(x,y,z,model,rotation)
+    this.Set  = function(position,model,rotation)
     {
         // get model
         var model = Engine.Models.Get(model);
-        
+
         // calculate size and factor
         var modelSize = Engine.Models.GetSize(model);
-		var length = modelSize.x;
-		if(modelSize.z > length);
-			length = modelSize.z;
+    		var length = modelSize.x;
+    		if(modelSize.z > length);
+    			length = modelSize.z;
         var factor = Config.Size / length;
-        
+
         // scale model
         model.scale.x *= factor;
         model.scale.y *= factor;
         model.scale.z *= factor;
-        
+
         // check if rotation is set
         if(rotation != undefined)
-            model.rotation.y = rotation * Math.PI * 2;
-        
+            model.rotation.y = rotation.y * Math.PI * 2;
+
         // set model position
-        model.position.x = (x * Config.Size) * (1+Config.Spacing);
-        model.position.y = (y * Config.Size) * (1+Config.Spacing) / 2;
-        model.position.z = (z * Config.Size) * (1+Config.Spacing);
-        
+        model.position.x = (position.x * Config.Size) * (1+Config.Spacing);
+        model.position.y = (position.y * Config.Size) * (1+Config.Spacing) / 2;
+        model.position.z = (position.z * Config.Size) * (1+Config.Spacing);
+
         // add model to map
-        this.Check(x, y, z);
-        if(this.map[x][y][z].model != undefined)
-            Engine.scene.remove(this.map[x][y][z].model);
-        
-        this.map[x][y][z].model = model;
-        
+        this.Check(position);
+        if(this.map[position.x][position.y][position.z].model != undefined)
+            Engine.scene.remove(this.map[position.x][position.y][position.z].model);
+
+        this.map[position.x][position.y][position.z].model = model;
+
         // add model to scene
         Engine.scene.add(model);
     }
-    
+
     /**
      * Checks a map position and creates it in map object if necessary
      */
-    this.Check = function(x,y,z) {
-        if(!(x in this.map))
-            this.map[x] = {};
-        
-        if(!(y in this.map[x]))
-            this.map[x][y] = {};
-        
-        if(!(z in this.map[x][y]))
-            this.map[x][y][z] = {};
-    }   
+    this.Check = function(position) {
+        if(!(position.x in this.map))
+            this.map[position.x] = {};
+
+        if(!(position.y in this.map[position.x]))
+            this.map[position.x][position.y] = {};
+
+        if(!(position.z in this.map[position.x][position.y]))
+            this.map[position.x][position.y][position.z] = {};
+    }
 }

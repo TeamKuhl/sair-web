@@ -35,8 +35,8 @@ function Client() {
 		// console.info(objMessage);
 
 		// callback available?
-		if(Client.events[objMessage.type] != undefined)
-			 Client.events[objMessage.type].forEach(function(callback) {
+		if(Client.events[objMessage.t] != undefined)
+			 Client.events[objMessage.t].forEach(function(callback) {
 				// call callback
 				if(callback)
 					callback(objMessage);
