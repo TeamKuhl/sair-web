@@ -117,7 +117,7 @@ function Game()
   }
 
   this.Objectdelete = function(message) {
-    message.objects.forEach(function(e){
+    message.o.forEach(function(e){
       Engine.Objects.Destroy(e.u);
     });
   }
