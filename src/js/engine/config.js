@@ -15,6 +15,6 @@ var Config = {
 	Size:           1,
 	Spacing:        0,
 	AntiAlias:      true,
-	Isometric:      true,
-	Stats:					true    
+	Isometric:      false,
+	Stats:					true
 }

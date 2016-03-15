@@ -10,6 +10,8 @@ function Game()
     // DEFINITION
     this.clientuuid = false;
     this.current = false;
+    this.targetSet = false;
+    this.Speed = 1;
 
     /**
      * Initializes the GAME
@@ -45,10 +47,10 @@ function Game()
     $(document).keydown(function(e){
       switch(e.which) {
         case 87: // w
-          Game.current.movement.z = 0.10;
+          Game.current.movement.z = 0.10 * Game.Speed;
           break;
         case 83: // s
-          Game.current.movement.z = -0.10;
+          Game.current.movement.z = -0.10 * Game.Speed;
           break;
         case 65: // a
           Game.current.rotation.y = +0.015;
@@ -80,7 +82,6 @@ function Game()
 	}
 
   this.Movement = function() {
-
     if(Game.current.movement.z != 0 || Game.current.rotation.y != 0) {
       Engine.Objects.ChangeRotation(Game.clientuuid, Game.current.rotation);
       Engine.Objects.Move(Game.clientuuid, Game.current.movement);
@@ -100,6 +101,22 @@ function Game()
         message.r = rot;
 
       Client.Send(message);
+
+      if(!Game.targetSet) {
+          Engine.camera.addTarget({
+              name: 'me',
+              targetObject: Engine.Objects.objects[Game.clientuuid].model,
+              cameraPosition: new THREE.Vector3(0, 2, 4),
+              cameraRotation: new THREE.Euler( 0.2, Math.PI, 0, 'XYZ' ),
+              fixed: false,
+              stiffness: 1,
+              matchRotation: true
+          });
+
+          Engine.camera.setTarget('me');
+
+          Game.targetSet = true;
+      }
     }
   }
 
@@ -108,7 +125,7 @@ function Game()
       if(Engine.Objects.Exists(e.u)) {
       	if(e.p != undefined)
         	Engine.Objects.SetPosition(e.u, e.p);
-        	
+
         if(e.r != undefined)
         	Engine.Objects.SetRotation(e.u, e.r);
       }

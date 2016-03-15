@@ -9,6 +9,7 @@ Engine.Models.Load([
 	{name:"plane",path:"vehicles/planes/cessna-152"},
 	{name:"fire",path:"vehicles/ground/feuerwehr"},
 	{name:"tanka",path:"vehicles/ground/tank-lkw"},
+	{name:"trees",path:"landscape/trees"},
 	{name:"grass",path:"landscape/grass"},
 	{name:"grass-street",path:"landscape/grass-street"},
 	{name:"grass-curve",path:"landscape/grass-curve"},

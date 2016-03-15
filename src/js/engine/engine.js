@@ -31,7 +31,7 @@ function Engine()
         }
         else
         {
-            this.camera = new THREE.PerspectiveCamera(
+            this.camera = new THREE.TargetCamera(
                 Config.FieldOfView,
                 Config.AspectRatio,
                 Config.PaneNear,
@@ -50,8 +50,8 @@ function Engine()
         document.body.appendChild(this.renderer.domElement);
 
         // mouse movement
-        this.controls = new THREE.OrbitControls(this.camera, this.renderer.domElement);
-        if(Config.Isometric) this.controls.enableRotate = false;
+        //this.controls = new THREE.OrbitControls(this.camera, this.renderer.domElement);
+        //if(Config.Isometric) this.controls.enableRotate = false;
 
         // sky
         this.CreateSky();
@@ -82,6 +82,8 @@ function Engine()
 
         if(self.stats)
             self.stats.begin();
+
+        this.camera.update();
 
         this.renderer.render(this.scene, this.camera);
 
