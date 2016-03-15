@@ -6,5 +6,5 @@
  **/
 
 var ClientConfig = {
-	URL:	"ws://172.25.64.99:443/wsService"
+	URL:	"ws://85.88.28.227:443/wsService"
 }
