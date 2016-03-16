@@ -89,12 +89,12 @@ function Objects()
 
 		// calculate movement
 		this.objects[name].movement = {
-				position = {
+				position: {
 					x: (npos.x - opos.x) / timediff,
 					y: (npos.y - opos.y) / timediff,
 					z: (npos.z - opos.z) / timediff,
 				},
-				rotation = {
+				rotation: {
 					x: (nrot.x - orot.x) / timediff,
 					y: (nrot.y - orot.y) / timediff,
 					z: (nrot.z - orot.z) / timediff,
