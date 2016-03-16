@@ -81,8 +81,8 @@ function Objects()
 		var nrot = this.GetRotation(name);
 
 		// get old position
-		var opos = this.ojects[name].last.position;
-		var orot = this.ojects[name].last.rotation;
+		var opos = this.objects[name].last.position;
+		var orot = this.objects[name].last.rotation;
 
 		// get time difference
 		var timediff = Date.now() - this.objects[name].last.time;
