@@ -4,8 +4,8 @@
 		<contributor>
 			<authoring_tool>CINEMA4D 14.025 COLLADA Exporter</authoring_tool>
 		</contributor>
-		<created>2016-03-17T12:14:47Z</created>
-		<modified>2016-03-17T12:14:47Z</modified>
+		<created>2015-11-18T08:55:23Z</created>
+		<modified>2015-11-18T08:55:23Z</modified>
 		<unit meter="0.01" name="centimeter"/>
 		<up_axis>Y_UP</up_axis>
 	</asset>
@@ -75,7 +75,7 @@
 					</technique_common>
 				</source>
 				<source id="ID12">
-					<float_array id="ID13" count="18" digits="2490374">0 0 1 1 -0 -0 0 -0 -1 -1 0 -0 0 1 0 0 -1 0</float_array>
+					<float_array id="ID13" count="18" digits="2490374">0 0 1 1 0 -0 0 0 -1 -1 0 -0 0 1 -0 0 -1 -0</float_array>
 					<technique_common>
 						<accessor count="6" source="#ID13" stride="3">
 							<param name="X" type="float"/>
@@ -85,9 +85,9 @@
 					</technique_common>
 				</source>
 				<source id="ID14">
-					<float_array id="ID15" count="20" digits="2490374">-0.75 0.8125 -0.75 1.4375 1.75 1.4375 1.75 0.8125 -0.75 -0.75 -0.75 1.75 1.75 1.75 1.75 -0.75 -0.75 0.1875 1.75 0.1875</float_array>
+					<float_array id="ID15" count="8" digits="2490374">0 0 0 1 1 1 1 0</float_array>
 					<technique_common>
-						<accessor count="10" source="#ID15" stride="2">
+						<accessor count="4" source="#ID15" stride="2">
 							<param name="S" type="float"/>
 							<param name="T" type="float"/>
 						</accessor>
@@ -101,14 +101,14 @@
 					<input offset="1" semantic="NORMAL" source="#ID12" set="0"/>
 					<input offset="2" semantic="TEXCOORD" source="#ID14" set="0"/>
 					<vcount>4 4 4 4 4 4</vcount>
-					<p>2 0 3 3 0 2 1 0 1 0 0 0 4 1 3 5 1 2 3 1 1 2 1 0 6 2 3 7 2 2 5 2 1 4 2 0 0 3 3 1 3 2 7 3 1 6 3 0 3 4 7 5 4 6 7 4 5 1 4 4 4 5 7 2 5 6 0 5 5 6 5 4</p>
+					<p>2 0 3 3 0 2 1 0 1 0 0 0 4 1 3 5 1 2 3 1 1 2 1 0 6 2 3 7 2 2 5 2 1 4 2 0 0 3 3 1 3 2 7 3 1 6 3 0 3 4 3 5 4 2 7 4 1 1 4 0 4 5 3 2 5 2 0 5 1 6 5 0</p>
 				</polylist>
 				<polylist count="6" material="Material1">
 					<input offset="0" semantic="VERTEX" source="#ID16" set="0"/>
 					<input offset="1" semantic="NORMAL" source="#ID12" set="0"/>
 					<input offset="2" semantic="TEXCOORD" source="#ID14" set="0"/>
 					<vcount>4 4 4 4 4 4</vcount>
-					<p>10 0 9 11 0 3 9 0 0 8 0 8 12 1 9 13 1 3 11 1 0 10 1 8 14 2 9 15 2 3 13 2 0 12 2 8 8 3 9 9 3 3 15 3 0 14 3 8 11 4 7 13 4 6 15 4 5 9 4 4 12 5 7 10 5 6 8 5 5 14 5 4</p>
+					<p>10 0 3 11 0 2 9 0 1 8 0 0 12 1 3 13 1 2 11 1 1 10 1 0 14 2 3 15 2 2 13 2 1 12 2 0 8 3 3 9 3 2 15 3 1 14 3 0 11 4 3 13 4 2 15 4 1 9 4 0 12 5 3 10 5 2 8 5 1 14 5 0</p>
 				</polylist>
 			</mesh>
 		</geometry>

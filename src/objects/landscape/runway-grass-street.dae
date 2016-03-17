@@ -4,8 +4,8 @@
 		<contributor>
 			<authoring_tool>CINEMA4D 14.025 COLLADA Exporter</authoring_tool>
 		</contributor>
-		<created>2016-03-17T12:17:45Z</created>
-		<modified>2016-03-17T12:17:45Z</modified>
+		<created>2015-11-17T12:56:35Z</created>
+		<modified>2015-11-17T12:56:35Z</modified>
 		<unit meter="0.01" name="centimeter"/>
 		<up_axis>Y_UP</up_axis>
 	</asset>
@@ -103,7 +103,7 @@
 					</technique_common>
 				</source>
 				<source id="ID16">
-					<float_array id="ID17" count="18" digits="2490374">0 0 1 1 -0 -0 0 -0 -1 -1 0 -0 0 1 0 0 -1 0</float_array>
+					<float_array id="ID17" count="18" digits="2490374">0 0 1 1 0 -0 0 0 -1 -1 0 -0 0 1 -0 0 -1 -0</float_array>
 					<technique_common>
 						<accessor count="6" source="#ID17" stride="3">
 							<param name="X" type="float"/>
@@ -113,32 +113,44 @@
 					</technique_common>
 				</source>
 				<source id="ID18">
-					<float_array id="ID19" count="0" digits="2490374"/>
+					<float_array id="ID19" count="8" digits="2490374">0 0 0 1 1 1 1 0</float_array>
 					<technique_common>
-						<accessor count="0" source="#ID19" stride="2">
+						<accessor count="4" source="#ID19" stride="2">
 							<param name="S" type="float"/>
 							<param name="T" type="float"/>
 						</accessor>
 					</technique_common>
 				</source>
-				<source id="ID20">
-					<float_array id="ID21" count="120" digits="2490374">0.625 0.608173 0.625 0.695913 0.83601 0.725627 0.83601 0.628928 1.16399 0.725627 1.16399 0.628928 0.16399 0.628928 0.16399 0.725627 0.375 0.695913 0.375 0.608173 0.875 0.669494 0.875 0.776025 0.91399 0.725627 0.91399 0.628928 1.08601 0.725627 1.08601 0.628928 0.0860104 0.628928 0.0860104 0.725627 0.125 0.776025 0.125 0.669494 1.125 0.669494 1.125 0.776025 0.83601 0.731813 0.857388 0.717112 0.857388 0.618486 0.875 0.736614 0.875 0.632459 0.852416 0.756241 0.852416 0.647584 0.147584 0.647584 0.147584 0.756241 0.125 0.736614 0.125 0.632459 0.142612 0.717112 0.142612 0.618486 0.16399 0.731813 0.892612 0.717112 0.892612 0.618486 0.91399 0.731813 0.875 0.782163 0.125 0.782163 0.0860104 0.731813 0.107388 0.717112 0.107388 0.618486 0.857388 0.711029 0.875 0.695913 0.875 0.608173 0.892612 0.711029 0.875 0.730405 0.125 0.730405 0.107388 0.711029 0.125 0.695913 0.125 0.608173 0.142612 0.711029 0.625 0.5 0.875 0.5 1.125 0.608173 1.125 0.5 0.125 0.5 0.375 0.5</float_array>
-					<technique_common>
-						<accessor count="60" source="#ID21" stride="2">
-							<param name="S" type="float"/>
-							<param name="T" type="float"/>
-						</accessor>
-					</technique_common>
-				</source>
-				<vertices id="ID22">
+				<vertices id="ID20">
 					<input semantic="POSITION" source="#ID14"/>
 				</vertices>
-				<polylist count="54" material="Material1">
-					<input offset="0" semantic="VERTEX" source="#ID22" set="0"/>
+				<polylist count="12" material="Material1">
+					<input offset="0" semantic="VERTEX" source="#ID20" set="0"/>
 					<input offset="1" semantic="NORMAL" source="#ID16" set="0"/>
-					<input offset="2" semantic="TEXCOORD" source="#ID20" set="0"/>
-					<vcount>4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4</vcount>
-					<p>2 0 3 3 0 2 1 0 1 0 0 0 4 1 5 5 1 4 3 1 2 2 1 3 6 2 9 7 2 8 5 2 7 4 2 6 0 3 0 1 3 1 7 3 8 6 3 9 3 4 2 5 4 7 7 4 8 1 4 1 4 5 6 2 5 3 0 5 0 6 5 9 10 0 13 11 0 12 9 0 11 8 0 10 12 1 15 13 1 14 11 1 12 10 1 13 14 2 19 15 2 18 13 2 17 12 2 16 8 3 10 9 3 11 15 3 21 14 3 20 11 4 12 13 4 14 15 4 21 9 4 11 12 5 15 10 5 13 8 5 10 14 5 20 18 0 24 19 0 23 17 0 22 16 0 3 20 1 26 21 1 25 19 1 23 18 1 24 22 2 28 23 2 27 21 2 25 20 2 26 16 3 3 17 3 22 23 3 27 22 3 28 19 4 23 21 4 25 23 4 27 17 4 22 20 5 26 18 5 24 16 5 3 22 5 28 26 0 32 27 0 31 25 0 30 24 0 29 28 1 34 29 1 33 27 1 31 26 1 32 30 2 6 31 2 35 29 2 33 28 2 34 24 3 29 25 3 30 31 3 35 30 3 6 27 4 31 29 4 33 31 4 35 25 4 30 28 5 34 26 5 32 24 5 29 30 5 6 34 0 37 35 0 36 33 0 27 32 0 28 36 1 13 37 1 38 35 1 36 34 1 37 38 2 10 39 2 39 37 2 38 36 2 13 32 3 28 33 3 27 39 3 39 38 3 10 35 4 36 37 4 38 39 4 39 33 4 27 36 5 13 34 5 37 32 5 28 38 5 10 42 0 16 43 0 41 41 0 40 40 0 19 44 1 43 45 1 42 43 1 41 42 1 16 46 2 29 47 2 30 45 2 42 44 2 43 40 3 19 41 3 40 47 3 30 46 3 29 43 4 41 45 4 42 47 4 30 41 4 40 44 5 43 42 5 16 40 5 19 46 5 29 50 0 46 51 0 45 49 0 44 48 0 24 52 1 37 53 1 47 51 1 45 50 1 46 54 2 26 55 2 48 53 2 47 52 2 37 48 3 24 49 3 44 55 3 48 54 3 26 51 4 45 53 4 47 55 4 48 49 4 44 52 5 37 50 5 46 48 5 24 54 5 26 58 0 43 59 0 50 57 0 49 56 0 32 60 1 52 61 1 51 59 1 50 58 1 43 62 2 34 63 2 53 61 2 51 60 2 52 56 3 32 57 3 49 63 3 53 62 3 34 59 4 50 61 4 51 63 4 53 57 4 49 60 5 52 58 5 43 56 5 32 62 5 34 66 0 55 67 0 46 65 0 0 64 0 54 68 1 57 69 1 56 67 1 46 66 1 55 70 2 59 71 2 9 69 2 52 68 2 58 64 3 54 65 3 0 71 3 9 70 3 59 67 4 46 69 4 52 71 4 9 65 4 0 68 5 58 66 5 55 64 5 54 70 5 59</p>
+					<input offset="2" semantic="TEXCOORD" source="#ID18" set="0"/>
+					<vcount>4 4 4 4 4 4 4 4 4 4 4 4</vcount>
+					<p>2 0 3 3 0 2 1 0 1 0 0 0 4 1 3 5 1 2 3 1 1 2 1 0 6 2 3 7 2 2 5 2 1 4 2 0 0 3 3 1 3 2 7 3 1 6 3 0 3 4 3 5 4 2 7 4 1 1 4 0 4 5 3 2 5 2 0 5 1 6 5 0 10 0 3 11 0 2 9 0 1 8 0 0 12 1 3 13 1 2 11 1 1 10 1 0 14 2 3 15 2 2 13 2 1 12 2 0 8 3 3 9 3 2 15 3 1 14 3 0 11 4 3 13 4 2 15 4 1 9 4 0 12 5 3 10 5 2 8 5 1 14 5 0</p>
+				</polylist>
+				<polylist count="24" material="Material2">
+					<input offset="0" semantic="VERTEX" source="#ID20" set="0"/>
+					<input offset="1" semantic="NORMAL" source="#ID16" set="0"/>
+					<input offset="2" semantic="TEXCOORD" source="#ID18" set="0"/>
+					<vcount>4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4</vcount>
+					<p>18 0 3 19 0 2 17 0 1 16 0 0 20 1 3 21 1 2 19 1 1 18 1 0 22 2 3 23 2 2 21 2 1 20 2 0 16 3 3 17 3 2 23 3 1 22 3 0 19 4 3 21 4 2 23 4 1 17 4 0 20 5 3 18 5 2 16 5 1 22 5 0 26 0 3 27 0 2 25 0 1 24 0 0 28 1 3 29 1 2 27 1 1 26 1 0 30 2 3 31 2 2 29 2 1 28 2 0 24 3 3 25 3 2 31 3 1 30 3 0 27 4 3 29 4 2 31 4 1 25 4 0 28 5 3 26 5 2 24 5 1 30 5 0 34 0 3 35 0 2 33 0 1 32 0 0 36 1 3 37 1 2 35 1 1 34 1 0 38 2 3 39 2 2 37 2 1 36 2 0 32 3 3 33 3 2 39 3 1 38 3 0 35 4 3 37 4 2 39 4 1 33 4 0 36 5 3 34 5 2 32 5 1 38 5 0 42 0 3 43 0 2 41 0 1 40 0 0 44 1 3 45 1 2 43 1 1 42 1 0 46 2 3 47 2 2 45 2 1 44 2 0 40 3 3 41 3 2 47 3 1 46 3 0 43 4 3 45 4 2 47 4 1 41 4 0 44 5 3 42 5 2 40 5 1 46 5 0</p>
+				</polylist>
+				<polylist count="12" material="Material3">
+					<input offset="0" semantic="VERTEX" source="#ID20" set="0"/>
+					<input offset="1" semantic="NORMAL" source="#ID16" set="0"/>
+					<input offset="2" semantic="TEXCOORD" source="#ID18" set="0"/>
+					<vcount>4 4 4 4 4 4 4 4 4 4 4 4</vcount>
+					<p>50 0 3 51 0 2 49 0 1 48 0 0 52 1 3 53 1 2 51 1 1 50 1 0 54 2 3 55 2 2 53 2 1 52 2 0 48 3 3 49 3 2 55 3 1 54 3 0 51 4 3 53 4 2 55 4 1 49 4 0 52 5 3 50 5 2 48 5 1 54 5 0 58 0 3 59 0 2 57 0 1 56 0 0 60 1 3 61 1 2 59 1 1 58 1 0 62 2 3 63 2 2 61 2 1 60 2 0 56 3 3 57 3 2 63 3 1 62 3 0 59 4 3 61 4 2 63 4 1 57 4 0 60 5 3 58 5 2 56 5 1 62 5 0</p>
+				</polylist>
+				<polylist count="6" material="Material4">
+					<input offset="0" semantic="VERTEX" source="#ID20" set="0"/>
+					<input offset="1" semantic="NORMAL" source="#ID16" set="0"/>
+					<input offset="2" semantic="TEXCOORD" source="#ID18" set="0"/>
+					<vcount>4 4 4 4 4 4</vcount>
+					<p>66 0 3 67 0 2 65 0 1 64 0 0 68 1 3 69 1 2 67 1 1 66 1 0 70 2 3 71 2 2 69 2 1 68 2 0 64 3 3 65 3 2 71 3 1 70 3 0 67 4 3 69 4 2 71 4 1 65 4 0 68 5 3 66 5 2 64 5 1 70 5 0</p>
 				</polylist>
 			</mesh>
 		</geometry>
@@ -154,7 +166,16 @@
 				<instance_geometry url="#ID13">
 					<bind_material>
 						<technique_common>
-							<instance_material symbol="Material1" target="#ID1">
+							<instance_material symbol="Material1" target="#ID3">
+								<bind_vertex_input semantic="UVSET0" input_semantic="TEXCOORD" input_set="0"/>
+							</instance_material>
+							<instance_material symbol="Material2" target="#ID5">
+								<bind_vertex_input semantic="UVSET0" input_semantic="TEXCOORD" input_set="0"/>
+							</instance_material>
+							<instance_material symbol="Material3" target="#ID7">
+								<bind_vertex_input semantic="UVSET0" input_semantic="TEXCOORD" input_set="0"/>
+							</instance_material>
+							<instance_material symbol="Material4" target="#ID9">
 								<bind_vertex_input semantic="UVSET0" input_semantic="TEXCOORD" input_set="0"/>
 							</instance_material>
 						</technique_common>
