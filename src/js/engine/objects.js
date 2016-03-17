@@ -114,19 +114,22 @@ function Objects()
 		for(var name in this.objects) {
 			var obj = self.objects[name];
 			var timediff = Date.now() - obj.movetime;
-			timediff = 1;
 
-			self.ChangePosition(name, {
-				x: obj.movement.position.x * timediff,
-				y: obj.movement.position.y * timediff,
-				z: obj.movement.position.z * timediff,
-			});
+			if(timediff > 50) {
+				self.ChangePosition(name, {
+					x: obj.movement.position.x * timediff,
+					y: obj.movement.position.y * timediff,
+					z: obj.movement.position.z * timediff,
+				});
 
-			self.ChangeRotation(name, {
-				x: obj.movement.rotation.x * timediff,
-				y: obj.movement.rotation.y * timediff,
-				z: obj.movement.rotation.z * timediff,
-			});
+				self.ChangeRotation(name, {
+					x: obj.movement.rotation.x * timediff,
+					y: obj.movement.rotation.y * timediff,
+					z: obj.movement.rotation.z * timediff,
+				});
+
+				self.objects[name].movetime = Date.now();
+			}
 		}
 	}
 
@@ -180,6 +183,63 @@ function Objects()
 		this.objects[name].model.scale.x *= factor;
 		this.objects[name].model.scale.y *= factor;
 		this.objects[name].model.scale.z *= factor;
+	}
+
+	/**
+	 * Set the target of an object
+	 */
+	this.SetTarget = function(name, target) {
+			var pos = this.GetPosition(name);
+			var rot = this.GetRotation(name);
+
+			this.objects[name].target = {
+				position: {
+					x: (target.position.x == undefined) ? pos.x : target.position.x,
+					y: (target.position.y == undefined) ? pos.y : target.position.y,
+					z: (target.position.z == undefined) ? pos.z : target.position.z,
+				},
+				rotation: {
+					x: (target.rotation.x == undefined) ? rot.x : target.rotation.x,
+					y: (target.rotation.y == undefined) ? rot.y : target.rotation.y,
+					z: (target.rotation.z == undefined) ? rot.z : target.rotation.z,
+				}
+			};
+			this.objects[name].targettime = Date.now() + 100;
+			this.objects[name].movetime = Date.now();
+	}
+
+	/**
+	 * Set the target of an object
+	 */
+	this.TargetMove = function() {
+		var self = this;
+
+		for(var name in this.objects) {
+			var obj = self.objects[name];
+			var timeleft = obj.targettime - Date.now();
+			var timediff = Date.now() - obj.movetime;
+
+			var vector = new THREE.Vector3 (
+				obj.model.position.x - obj.target.position.x,
+				obj.model.position.y - obj.target.position.y,
+				obj.model.position.z - obj.target.position.z
+			);
+
+			vector.setLength(vector.length() / (timediff / (timeleft + timediff)));
+
+			self.ChangePosition(name, {
+				x: vector.x,
+				y: vector.y,
+				z: vector.z,
+			});
+
+/*
+			self.ChangeRotation(name, {
+				x: obj.movement.rotation.x * timediff,
+				y: obj.movement.rotation.y * timediff,
+				z: obj.movement.rotation.z * timediff,
+			}); */
+		}
 	}
 
 	/**
