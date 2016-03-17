@@ -84,7 +84,8 @@ function Engine()
         if(self.stats)
             self.stats.begin();
 
-		    this.Objects.PreMove();
+		    //this.Objects.PreMove();
+        this.Objects.TargetMove();
         this.camera.update();
 
         this.renderer.render(this.scene, this.camera);

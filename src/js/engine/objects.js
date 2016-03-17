@@ -38,6 +38,8 @@ function Objects()
 				rotation: {x: 0, y: 0, z: 0}
 		};
 
+		this.objects[name].targets = [];
+
 		// save last
 		this.UpdateLast(name);
 
@@ -149,9 +151,9 @@ function Objects()
 	 */
 	this.GetRotation = function(name) {
 			return {
-				x: (this.objects[name].model.rotation.x / (Math.PI * 2)),
-				y: (this.objects[name].model.rotation.y / (Math.PI * 2)),
-				z: (this.objects[name].model.rotation.z / (Math.PI * 2)),
+				x: RoundRotation(this.objects[name].model.rotation.x / (Math.PI * 2)),
+				y: RoundRotation(this.objects[name].model.rotation.y / (Math.PI * 2)),
+				z: RoundRotation(this.objects[name].model.rotation.z / (Math.PI * 2)),
 			};
 	}
 
@@ -192,7 +194,10 @@ function Objects()
 			var pos = this.GetPosition(name);
 			var rot = this.GetRotation(name);
 
-			this.objects[name].target = {
+			if(target.position == undefined) target.position = {};
+			if(target.rotation == undefined) target.rotation = {};
+
+			this.objects[name].targets.push({
 				position: {
 					x: (target.position.x == undefined) ? pos.x : target.position.x,
 					y: (target.position.y == undefined) ? pos.y : target.position.y,
@@ -202,10 +207,9 @@ function Objects()
 					x: (target.rotation.x == undefined) ? rot.x : target.rotation.x,
 					y: (target.rotation.y == undefined) ? rot.y : target.rotation.y,
 					z: (target.rotation.z == undefined) ? rot.z : target.rotation.z,
-				}
-			};
-			this.objects[name].targettime = Date.now() + 100;
-			this.objects[name].movetime = Date.now();
+				},
+				time: Date.now() + 200
+			});
 	}
 
 	/**
@@ -216,29 +220,42 @@ function Objects()
 
 		for(var name in this.objects) {
 			var obj = self.objects[name];
-			var timeleft = obj.targettime - Date.now();
-			var timediff = Date.now() - obj.movetime;
 
-			var vector = new THREE.Vector3 (
-				obj.model.position.x - obj.target.position.x,
-				obj.model.position.y - obj.target.position.y,
-				obj.model.position.z - obj.target.position.z
-			);
+			if(obj.targets.length > 0) {
+				var target = {};
+				var go = true;
+				do {
+					target = obj.targets[0];
+					if(target == undefined || target.time <= Date.now())
+						obj.targets.shift();
+					else
+						go = false;
+				} while(go == true && obj.targets.length > 0);
 
-			vector.setLength(vector.length() / (timediff / (timeleft + timediff)));
+				if(target != undefined) {
+					var timeleft = target.time - Date.now();
+					var timediff = Date.now() - obj.movetime;
 
-			self.ChangePosition(name, {
-				x: vector.x,
-				y: vector.y,
-				z: vector.z,
-			});
+					if(timeleft >= 0 && timediff > 0) {
+						var factor = timediff / (timeleft + timediff);
+						var pos = self.GetPosition(name);
+						var rot = self.GetRotation(name);
 
-/*
-			self.ChangeRotation(name, {
-				x: obj.movement.rotation.x * timediff,
-				y: obj.movement.rotation.y * timediff,
-				z: obj.movement.rotation.z * timediff,
-			}); */
+						self.ChangePosition(name, {
+							x: (target.position.x - pos.x) * factor,
+							y: (target.position.y - pos.y) * factor,
+							z: (target.position.z - pos.z) * factor
+						});
+
+						self.ChangeRotation(name, {
+							x: (target.rotation.x - rot.x) * factor,
+							y: (target.rotation.y - rot.y) * factor,
+							z: (target.rotation.z - rot.z) * factor
+						});
+						self.objects[name].movetime = Date.now();
+					}
+				}
+			}
 		}
 	}
 
