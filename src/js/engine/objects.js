@@ -29,7 +29,7 @@ function Objects()
 		if(position != undefined)
 			this.SetPosition(name, position);
 
-		if(rotation != undefined)
+		if(rotation != undefined) // O
 			this.SetRotation(name, rotation);
 
 		// initialize movment
@@ -41,8 +41,8 @@ function Objects()
 		// save last
 		this.UpdateLast(name);
 
-    // add model to scene
-    Engine.scene.add(model);
+		// add model to scene
+		Engine.scene.add(model);
 	}
 
 	/**
@@ -87,6 +87,9 @@ function Objects()
 		// get time difference
 		var timediff = Date.now() - this.objects[name].last.time;
 
+		if(timediff <= 0)
+			return true;
+
 		// calculate movement
 		this.objects[name].movement = {
 				position: {
@@ -100,6 +103,31 @@ function Objects()
 					z: (nrot.z - orot.z) / timediff,
 				}
 		};
+	}
+
+	/**
+	 * Move all objects in the precalculated direction
+	 */
+	this.PreMove = function() {
+		var self = this;
+
+		for(var name in this.objects) {
+			var obj = self.objects[name];
+			var timediff = Date.now() - obj.movetime;
+			timediff = 1;
+
+			self.ChangePosition(name, {
+				x: obj.movement.position.x * timediff,
+				y: obj.movement.position.y * timediff,
+				z: obj.movement.position.z * timediff,
+			});
+
+			self.ChangeRotation(name, {
+				x: obj.movement.rotation.x * timediff,
+				y: obj.movement.rotation.y * timediff,
+				z: obj.movement.rotation.z * timediff,
+			});
+		}
 	}
 
 	/**
@@ -118,9 +146,9 @@ function Objects()
 	 */
 	this.GetRotation = function(name) {
 			return {
-				x: RoundRotation(this.objects[name].model.rotation.x / (Math.PI * 2)),
-				y: RoundRotation(this.objects[name].model.rotation.y / (Math.PI * 2)),
-				z: RoundRotation(this.objects[name].model.rotation.z / (Math.PI * 2)),
+				x: (this.objects[name].model.rotation.x / (Math.PI * 2)),
+				y: (this.objects[name].model.rotation.y / (Math.PI * 2)),
+				z: (this.objects[name].model.rotation.z / (Math.PI * 2)),
 			};
 	}
 
@@ -164,9 +192,6 @@ function Objects()
 			this.objects[name].model.position.y = (position.y * Config.Size) * (1+Config.Spacing) / 2;
 		if(position.z != undefined && position.z != false)
 			this.objects[name].model.position.z = (position.z * Config.Size) * (1+Config.Spacing);
-
-		this.CalcMovement(name);
-		this.UpdateLast(name);
 	}
 
 	/**
@@ -179,9 +204,6 @@ function Objects()
 			this.objects[name].model.position.y += (position.y * Config.Size) * (1+Config.Spacing) / 2;
 		if(position.z != undefined && position.z != false)
 			this.objects[name].model.position.z += (position.z * Config.Size) * (1+Config.Spacing);
-
-		this.CalcMovement(name);
-		this.UpdateLast(name);
 	}
 
 	/**
@@ -194,9 +216,6 @@ function Objects()
 			this.objects[name].model.rotation.y = rotation.y * Math.PI * 2;
 		if(rotation.z != undefined && rotation.z != false)
 			this.objects[name].model.rotation.z = rotation.z * Math.PI * 2;
-
-		this.CalcMovement(name);
-		this.UpdateLast(name);
 	}
 
 	/**
@@ -209,9 +228,6 @@ function Objects()
 			this.objects[name].model.rotation.y += rotation.y * Math.PI * 2;
 		if(rotation.z != undefined && rotation.z != false)
 			this.objects[name].model.rotation.z += rotation.z * Math.PI * 2;
-
-		this.CalcMovement(name);
-		this.UpdateLast(name);
 	}
 
 	/**
@@ -224,9 +240,6 @@ function Objects()
 			this.objects[name].model.translateY(movement.y * Config.Size);
 		if(movement.z != undefined && movement.z != false)
 			this.objects[name].model.translateZ(movement.z * Config.Size);
-
-		this.CalcMovement(name);
-		this.UpdateLast(name);
 	}
 
 }

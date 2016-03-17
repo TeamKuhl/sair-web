@@ -63,13 +63,14 @@ function Engine()
         if(Config.Stats)
             this.InitStats();
 
+		// other classes
+		this.Models = new Models();
+		this.Map = new Map();
+		this.Objects = new Objects();
+
         // start rendering
         this.Frame();
 
-    		// other classes
-    		this.Models = new Models();
-    		this.Map = new Map();
-    		this.Objects = new Objects();
     }
 
     /**
@@ -83,6 +84,7 @@ function Engine()
         if(self.stats)
             self.stats.begin();
 
+		    this.Objects.PreMove();
         this.camera.update();
 
         this.renderer.render(this.scene, this.camera);

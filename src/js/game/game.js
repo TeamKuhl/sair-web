@@ -82,9 +82,12 @@ function Game()
 	}
 
   this.Movement = function() {
-    if(Game.current.movement.z != 0 || Game.current.rotation.y != 0) {
+    //if(Game.current.movement.z != 0 || Game.current.rotation.y != 0) {
       Engine.Objects.ChangeRotation(Game.clientuuid, Game.current.rotation);
       Engine.Objects.Move(Game.clientuuid, Game.current.movement);
+
+  	  Engine.Objects.CalcMovement(Game.clientuuid);
+  	  Engine.Objects.UpdateLast(Game.clientuuid);
 
       var clientobject = Engine.Objects.Get(Game.clientuuid);
       var message = {
@@ -117,7 +120,7 @@ function Game()
 
           Game.targetSet = true;
       }
-    }
+    //}
   }
 
   this.Objectchange = function(message) {
@@ -128,6 +131,9 @@ function Game()
 
         if(e.r != undefined)
         	Engine.Objects.SetRotation(e.u, e.r);
+
+		Engine.Objects.CalcMovement(e.u);
+		Engine.Objects.UpdateLast(e.u);
       }
       else {
         if(Engine.Models.Exists(e.m))
