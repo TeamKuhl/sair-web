@@ -4,8 +4,8 @@
 		<contributor>
 			<authoring_tool>CINEMA4D 14.025 COLLADA Exporter</authoring_tool>
 		</contributor>
-		<created>2015-11-18T08:58:54Z</created>
-		<modified>2015-11-18T08:58:54Z</modified>
+		<created>2016-03-17T12:17:00Z</created>
+		<modified>2016-03-17T12:17:00Z</modified>
 		<unit meter="0.01" name="centimeter"/>
 		<up_axis>Y_UP</up_axis>
 	</asset>
@@ -103,7 +103,7 @@
 					</technique_common>
 				</source>
 				<source id="ID16">
-					<float_array id="ID17" count="18" digits="2490374">0 0 1 1 0 -0 0 0 -1 -1 0 -0 0 1 -0 0 -1 -0</float_array>
+					<float_array id="ID17" count="18" digits="2490374">0 0 1 1 -0 -0 0 -0 -1 -1 0 -0 0 1 0 0 -1 0</float_array>
 					<technique_common>
 						<accessor count="6" source="#ID17" stride="3">
 							<param name="X" type="float"/>
@@ -113,9 +113,9 @@
 					</technique_common>
 				</source>
 				<source id="ID18">
-					<float_array id="ID19" count="8" digits="2490374">0 0 0 1 1 1 1 0</float_array>
+					<float_array id="ID19" count="56" digits="2490374">0.58601 0.56722 0.58601 0.681921 0.91399 0.681921 0.91399 0.56722 1.125 0.655213 1.125 0.555694 0.125 0.555694 0.125 0.655213 0.375 0.655213 0.375 0.555694 1.375 0.555694 0.607388 0.561368 0.607388 0.675944 0.892612 0.675944 0.892612 0.561368 0.91399 0.689525 0.58601 0.689525 0.625 0.555694 0.625 0.655213 0.875 0.655213 0.875 0.555694 0.892612 0.668641 0.607388 0.668641 0.625 0.444306 0.875 0.444306 1.125 0.444306 0.125 0.444306 0.375 0.444306</float_array>
 					<technique_common>
-						<accessor count="4" source="#ID19" stride="2">
+						<accessor count="28" source="#ID19" stride="2">
 							<param name="S" type="float"/>
 							<param name="T" type="float"/>
 						</accessor>
@@ -129,28 +129,28 @@
 					<input offset="1" semantic="NORMAL" source="#ID16" set="0"/>
 					<input offset="2" semantic="TEXCOORD" source="#ID18" set="0"/>
 					<vcount>4 4 4 4 4 4</vcount>
-					<p>2 0 3 3 0 2 1 0 1 0 0 0 4 1 3 5 1 2 3 1 1 2 1 0 6 2 3 7 2 2 5 2 1 4 2 0 0 3 3 1 3 2 7 3 1 6 3 0 3 4 3 5 4 2 7 4 1 1 4 0 4 5 3 2 5 2 0 5 1 6 5 0</p>
+					<p>2 0 3 3 0 2 1 0 1 0 0 0 4 1 5 5 1 4 3 1 2 2 1 3 6 2 9 7 2 8 5 2 7 4 2 6 0 3 0 1 3 1 7 3 8 6 3 9 3 4 2 5 4 7 7 4 8 1 4 1 4 5 5 2 5 3 0 5 0 6 5 10</p>
 				</polylist>
 				<polylist count="6" material="Material2">
 					<input offset="0" semantic="VERTEX" source="#ID20" set="0"/>
 					<input offset="1" semantic="NORMAL" source="#ID16" set="0"/>
 					<input offset="2" semantic="TEXCOORD" source="#ID18" set="0"/>
 					<vcount>4 4 4 4 4 4</vcount>
-					<p>10 0 3 11 0 2 9 0 1 8 0 0 12 1 3 13 1 2 11 1 1 10 1 0 14 2 3 15 2 2 13 2 1 12 2 0 8 3 3 9 3 2 15 3 1 14 3 0 11 4 3 13 4 2 15 4 1 9 4 0 12 5 3 10 5 2 8 5 1 14 5 0</p>
+					<p>10 0 14 11 0 13 9 0 12 8 0 11 12 1 3 13 1 15 11 1 13 10 1 14 14 2 0 15 2 16 13 2 15 12 2 3 8 3 11 9 3 12 15 3 16 14 3 0 11 4 13 13 4 15 15 4 16 9 4 12 12 5 3 10 5 14 8 5 11 14 5 0</p>
 				</polylist>
 				<polylist count="6" material="Material3">
 					<input offset="0" semantic="VERTEX" source="#ID20" set="0"/>
 					<input offset="1" semantic="NORMAL" source="#ID16" set="0"/>
 					<input offset="2" semantic="TEXCOORD" source="#ID18" set="0"/>
 					<vcount>4 4 4 4 4 4</vcount>
-					<p>18 0 3 19 0 2 17 0 1 16 0 0 20 1 3 21 1 2 19 1 1 18 1 0 22 2 3 23 2 2 21 2 1 20 2 0 16 3 3 17 3 2 23 3 1 22 3 0 19 4 3 21 4 2 23 4 1 17 4 0 20 5 3 18 5 2 16 5 1 22 5 0</p>
+					<p>18 0 20 19 0 19 17 0 18 16 0 17 20 1 14 21 1 21 19 1 19 18 1 20 22 2 11 23 2 22 21 2 21 20 2 14 16 3 17 17 3 18 23 3 22 22 3 11 19 4 19 21 4 21 23 4 22 17 4 18 20 5 14 18 5 20 16 5 17 22 5 11</p>
 				</polylist>
 				<polylist count="6" material="Material4">
 					<input offset="0" semantic="VERTEX" source="#ID20" set="0"/>
 					<input offset="1" semantic="NORMAL" source="#ID16" set="0"/>
 					<input offset="2" semantic="TEXCOORD" source="#ID18" set="0"/>
 					<vcount>4 4 4 4 4 4</vcount>
-					<p>26 0 3 27 0 2 25 0 1 24 0 0 28 1 3 29 1 2 27 1 1 26 1 0 30 2 3 31 2 2 29 2 1 28 2 0 24 3 3 25 3 2 31 3 1 30 3 0 27 4 3 29 4 2 31 4 1 25 4 0 28 5 3 26 5 2 24 5 1 30 5 0</p>
+					<p>26 0 24 27 0 20 25 0 17 24 0 23 28 1 25 29 1 5 27 1 20 26 1 24 30 2 27 31 2 9 29 2 6 28 2 26 24 3 23 25 3 17 31 3 9 30 3 27 27 4 20 29 4 6 31 4 9 25 4 17 28 5 26 26 5 24 24 5 23 30 5 27</p>
 				</polylist>
 			</mesh>
 		</geometry>
