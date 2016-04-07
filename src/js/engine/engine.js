@@ -63,10 +63,10 @@ function Engine()
         if(Config.Stats)
             this.InitStats();
 
-		// other classes
-		this.Models = new Models();
-		this.Map = new Map();
-		this.Objects = new Objects();
+    		// other classes
+    		this.Models = new Models();
+    		this.Map = new Map();
+    		this.Objects = new Objects();
 
         // start rendering
         this.Frame();

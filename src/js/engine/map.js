@@ -42,12 +42,18 @@ function Map()
         // add model to map
         this.Check(position);
         if(this.map[position.x][position.y][position.z].model != undefined)
-            Engine.scene.remove(this.map[position.x][position.y][position.z].model);
+            this.group.remove(this.map[position.x][position.y][position.z].model);
 
         this.map[position.x][position.y][position.z].model = model;
 
+        // create group
+        if(this.group == undefined) {
+          this.group = new THREE.Object3D();
+          Engine.scene.add(this.group);
+        }
+
         // add model to scene
-        Engine.scene.add(model);
+        this.group.add(model);
     }
 
     /**

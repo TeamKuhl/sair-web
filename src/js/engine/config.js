@@ -13,7 +13,7 @@ var Config = {
 	Width:          window.innerWidth,
 	Height:         window.innerHeight,
 	Size:           1,
-	Spacing:        0,
+	Spacing:        0.05,
 	AntiAlias:      true,
 	Isometric:      false,
 	Stats:					true
