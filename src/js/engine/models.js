@@ -59,6 +59,9 @@ function Models()
         this.loader.load(
             'src/objects/'+mdl.path+'.dae',
             function(collada) {
+                // enable shadows
+                if(Config.Shadows)
+                  self.EnableShadows(collada.scene);
 
                 // save model
                 self.models[mdl.name] = collada.scene;
@@ -88,5 +91,19 @@ function Models()
     {
         var box = new THREE.Box3().setFromObject( model );
         return box.size();
+    }
+
+    /**
+     * Enable shadows
+     */
+    this.EnableShadows = function(model) {
+      model.castShadow = true;
+      model.receiveShadow = true;
+
+      if(model.children.length > 0) {
+        for(var i in model.children) {
+          this.EnableShadows(model.children[i]);
+        }
+      }
     }
 }

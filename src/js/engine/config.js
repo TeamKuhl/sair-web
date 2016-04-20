@@ -16,5 +16,6 @@ var Config = {
 	Spacing:        0.00,
 	AntiAlias:      true,
 	Isometric:      false,
-	Stats:					true
+	Stats:					true,
+	Shadows:				false
 }

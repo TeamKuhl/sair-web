@@ -42,12 +42,14 @@ function Engine()
             this.camera.position.y = 3;
         }
 
-
-
         // set up renderer
         this.renderer = new THREE.WebGLRenderer({antialias: Config.AntiAlias});
         this.renderer.setSize(Config.Width, Config.Height);
         document.body.appendChild(this.renderer.domElement);
+
+        // enable shadows
+        if(Config.Shadows)
+          this.renderer.shadowMapEnabled = true;
 
         // mouse movement
         //this.controls = new THREE.OrbitControls(this.camera, this.renderer.domElement);
@@ -104,6 +106,17 @@ function Engine()
         // create sky light
         this.sky.light = new THREE.HemisphereLight( 0xffffbb, 0x080820, 1 );
         this.scene.add( this.sky.light );
+
+        if(Config.Shadows) {
+          var dirLight = new THREE.DirectionalLight( 0xffffff, 1 );
+  				dirLight.color.setHSL( 0.1, 1, 0.95 );
+  				dirLight.position.set( -1, 5, 1 );
+  				dirLight.position.multiplyScalar( 50 );
+  				this.scene.add( dirLight );
+  				dirLight.castShadow = true;
+  				dirLight.shadowMapWidth = 2048;
+  				dirLight.shadowMapHeight = 2048;
+        }
 
         // blue sky
         this.renderer.setClearColor(0x96CFEA,1);
