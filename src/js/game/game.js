@@ -82,12 +82,13 @@ function Game()
 	}
 
   this.Movement = function() {
-    if(Game.current.movement.z != 0 || Game.current.rotation.y != 0) {
-      Engine.Objects.ChangeRotation(Game.clientuuid, Game.current.rotation);
+    //if(Game.current.movement.z != 0 || Game.current.rotation.y != 0) {
+      if(Game.current.movement.z != 0)
+        Engine.Objects.ChangeRotation(Game.clientuuid, Game.current.rotation);
       Engine.Objects.Move(Game.clientuuid, Game.current.movement);
 
-  	  //Engine.Objects.CalcMovement(Game.clientuuid);
-  	  //Engine.Objects.UpdateLast(Game.clientuuid);
+  	  Engine.Objects.CalcMovement(Game.clientuuid);
+  	  Engine.Objects.UpdateLast(Game.clientuuid);
 
       var clientobject = Engine.Objects.Get(Game.clientuuid);
       var message = {
@@ -120,25 +121,25 @@ function Game()
 
           Game.targetSet = true;
       }
-    }
+    //}
   }
 
   this.Objectchange = function(message) {
     message.o.forEach(function(e){
       if(Engine.Objects.Exists(e.u)) {
-
+/*
 		Engine.Objects.SetTarget(e.u, {
 			position: e.p,
 			rotation: e.r
-		});
-      	/* if(e.p != undefined)
-        	Engine.Objects.SetPosition(e.u, e.p);
+		}); */
+     if(e.p != undefined)
+      	Engine.Objects.SetPosition(e.u, e.p);
 
-        if(e.r != undefined)
-        	Engine.Objects.SetRotation(e.u, e.r);
+      if(e.r != undefined)
+      	Engine.Objects.SetRotation(e.u, e.r);
 
 		Engine.Objects.CalcMovement(e.u);
-		Engine.Objects.UpdateLast(e.u); */
+		Engine.Objects.UpdateLast(e.u);
       }
       else {
         if(Engine.Models.Exists(e.m))
