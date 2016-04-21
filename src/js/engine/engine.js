@@ -104,7 +104,7 @@ function Engine()
     this.CreateSky = function()
     {
         // create sky light
-        this.sky.light = new THREE.HemisphereLight( 0xFFE8D0, 0xFFE8D0, 0.0035 );
+        this.sky.light = new THREE.HemisphereLight( 0xffffbb, 0x080820, 0.3 );
         this.scene.add( this.sky.light );
 
         if(Config.Shadows) {
