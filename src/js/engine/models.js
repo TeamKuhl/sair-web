@@ -10,7 +10,6 @@ function Models()
     // DEFINITION
     this.models = {};
     this.pendingModels = {};
-	  this.loader = new THREE.ColladaLoader();
 
 	/**
 	 * Get a model
@@ -55,16 +54,29 @@ function Models()
         // get first model
         var mdl = this.pendingModels[0];
 
+        // get loader and path
+        var loader, path;
+        switch(mdl.loader) {
+            case "json":
+                loader = new THREE.ObjectLoader();
+                path = 'src/json/' + mdl.path + '.json';
+                break;
+            case "collada":
+                loader = new THREE.ColladaLoader();
+                path = 'src/objects/' + mdl.path + '.dae';
+                break;
+        }
+
         // load model and call this function again
-        this.loader.load(
-            'src/objects/'+mdl.path+'.dae',
-            function(collada) {
-                // enable shadows
-                if(Config.Shadows)
-                  self.EnableShadows(collada.scene);
+        loader.load(
+            path,
+            function(object) {
+                // collada difference
+                if(mdl.loader == "collada")
+                  object = object.scene;
 
                 // save model
-                self.models[mdl.name] = collada.scene;
+                self.models[mdl.name] = object;
                 self.models[mdl.name].name = mdl.name;
 
                 // delete from
