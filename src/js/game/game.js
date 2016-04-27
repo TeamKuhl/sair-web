@@ -30,9 +30,14 @@ function Game()
 	 * Mapchange
 	 */
 	this.Mapchange = function(message) {
+
+    Engine.Objects.Add("map", {x:0,y:0,z:0}, "map", 200, {x:0,y:0,z:0});
+
+    /*
 		message.o.forEach(function(e){
 			Engine.Map.Set(e.p,e.m,e.r);
 		});
+    */
 	}
 
   this.Clientuuid = function(message) {

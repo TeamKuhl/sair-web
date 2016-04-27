@@ -8,7 +8,8 @@ Engine.Initialize();
 Engine.Models.Load([
 	{name:"plane",path:"vehicles/planes/cessna-152",loader:"collada"},
 	{name:"fire",path:"vehicles/ground/feuerwehr",loader:"collada"},
-	{name:"tanka",path:"vehicles/ground/tank-lkw",loader:"json"},
+	{name:"tanka",path:"vehicles/ground/tank-lkw",loader:"collada"},
+	{name:"map",path:"maps/hockenheimring",loader:"collada"},
 	{name:"trees",path:"landscape/trees",loader:"collada"},
 	{name:"grass",path:"landscape/grass",loader:"collada"},
 	{name:"grass-street",path:"landscape/grass-street",loader:"collada"},

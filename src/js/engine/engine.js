@@ -104,7 +104,7 @@ function Engine()
     this.CreateSky = function()
     {
         // create sky light
-        this.sky.light = new THREE.HemisphereLight( 0xffffbb, 0x080820, 0.2 );
+        this.sky.light = new THREE.HemisphereLight( 0xffffbb, 0x080820, 1 );
         this.scene.add( this.sky.light );
 
         if(Config.Shadows) {
@@ -119,7 +119,7 @@ function Engine()
         }
 
         // blue sky
-        this.renderer.setClearColor(0x000030,1);
+        this.renderer.setClearColor(0x96CFEA,1);
     }
 
     /**
